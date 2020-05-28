@@ -18,11 +18,11 @@ namespace QuickBuy.Domain.Entity
         public string City { get; set; }
         public string FullAdress { get; set; }
         public int AdressNumber { get; set; }
-        public PaymentForm PaymentForm { get; set; }
         public int PaymentFormId { get; set; }
+        public virtual PaymentForm PaymentForm { get; set; }
 
 
-        public ICollection<ItemOrder> ItemOrders { get; set; }
+        public virtual ICollection<ItemOrder> ItemOrders { get; set; }
 
         public override void Validate() {
             ClearValidationMessage();

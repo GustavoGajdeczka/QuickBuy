@@ -19,8 +19,7 @@ namespace QuickBuy.Repository.Config
             builder.Property(o => o.City).IsRequired();
             builder.Property(o => o.FullAdress).IsRequired();
             builder.Property(o => o.AdressNumber).IsRequired();
-            builder.Property(o => o.PaymentForm).IsRequired();
-            builder.Property(o => o.PaymentFormId).IsRequired();
+            builder.HasOne(o => o.PaymentForm);
         }
     }
 }

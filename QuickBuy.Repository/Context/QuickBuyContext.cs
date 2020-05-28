@@ -22,10 +22,27 @@ namespace QuickBuy.Repository.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
-            modelBuilder.ApplyConfiguration(new OrderConfiguration());
-            modelBuilder.ApplyConfiguration(new PaymentFormConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ItemOrderConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentFormConfiguration());
+            modelBuilder.Entity<PaymentForm>().HasData(
+                new PaymentForm() {
+                    Id = 1,
+                    Name = "Boleto",
+                    Description = "Forma de Pagamento Boleto"
+                },
+                new PaymentForm() {
+                    Id = 2,
+                    Name = "Cartao de Crédito",
+                    Description = "Forma de Pagamento Cartão de Crédito"
+                },
+                new PaymentForm() {
+                    Id = 3,
+                    Name = "Depósito",
+                    Description = "Forma de Pagamento Depósito"
+                }
+                );
             base.OnModelCreating(modelBuilder);
         }
     }
