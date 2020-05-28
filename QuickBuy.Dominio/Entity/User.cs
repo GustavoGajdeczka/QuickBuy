@@ -8,14 +8,19 @@ namespace QuickBuy.Domain.Entity
     {
         public int Id { get; set; }
         public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Nome { get; set; }
-        public string SobreNome { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
+        public string LastName { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
         public override void Validate() {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(Email)) {
+                AddMessage("ERRO: email não informado");
+            }
+            if (string.IsNullOrEmpty(Password)) {
+                AddMessage("ERRO: senha não informada");
+            }
         }
     }
 }

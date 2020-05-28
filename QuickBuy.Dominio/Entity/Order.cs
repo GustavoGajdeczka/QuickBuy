@@ -11,6 +11,7 @@ namespace QuickBuy.Domain.Entity
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public int UserId { get; set; }
+        public virtual User User { get; set; }
         public DateTime DeliveryDate { get; set; }
         public string  CEP { get; set; }
         public string State { get; set; }
@@ -30,6 +31,9 @@ namespace QuickBuy.Domain.Entity
             }
             if (string.IsNullOrEmpty(CEP)) {
                 AddMessage("ERRO: CEP não pode ficar vazio");
+            }
+            if (PaymentFormId == 0) {
+                AddMessage("ERRO: forma de pagamento não informada");
             }
         }
 

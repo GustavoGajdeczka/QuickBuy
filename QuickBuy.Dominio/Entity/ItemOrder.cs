@@ -12,7 +12,12 @@ namespace QuickBuy.Domain.Entity
         public int Quantity { get; set; }
 
         public override void Validate() {
-            throw new NotImplementedException();
+            if (ProductId == 0) {
+                AddMessage("ERRO: Produto não identificado");
+            }
+            if (Quantity == 0) {
+                AddMessage("ERRO: Quantidade não informada");
+            }
         }
     }
 }
