@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuickBuy.Dominio
+namespace QuickBuy.Domain
 {
     public class Class1
     {
