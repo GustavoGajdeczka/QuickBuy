@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { User } from "../../model/user";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import { UserService } from "../../services/user/user.service";
 
 
 @Component({
@@ -8,21 +9,35 @@ import { Router } from "@angular/router";
   templateUrl: "./login.components.html",
   styleUrls: ["./login.components.css"]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public user;
+  public returnUrl: string;
+  public message: string;
   
 
-  constructor(private router: Router) {
-    this.user = new User();
+  constructor(private router: Router, private activatedRouter: ActivatedRoute, private userService: UserService) {
   }
+  ngOnInit(): void {
+    this.returnUrl = this.activatedRouter.snapshot.queryParams['returnUrl'];
+    this.user = new User();
+    }
 
   enter() {
-    if (this.user.email == "gustavo@teste.com" && this.user.password == "1234") {
-      sessionStorage.setItem("auth-user", "1");
-      this.router.navigate(['/']);
-    }
-  }
-  on_keypress() {
 
+    this.userService.verifyUser(this.user)
+      .subscribe(
+        data => {
+          var userReturn: User;
+          userReturn = data;
+          sessionStorage.setItem("auth-user", "1");
+          sessionStorage.setItem("email-user", userReturn.email);
+
+          this.router.navigate([this.returnUrl]);
+        },
+        err => {
+          console.log(err.error);
+          this.message = err.error;
+        }
+      );
   }
 }

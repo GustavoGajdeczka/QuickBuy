@@ -13,7 +13,7 @@
       <input type="email"
              id="inputEmail"
              name="email"
-             placeholder="Informe o seu Email"
+             placeholder="Informe o seu Email."
              class="form-control mb-2"
              [ngClass]="{
              'is-invalid': email.invalid && (email.dirty || email.touched),
@@ -50,6 +50,10 @@
                 >
           Entrar
         </button>
+
+      <div class="alert alert-danger" *ngIf="message">
+        {{ message }}
+      </div>
 
         <p class="mt-5 mb-3 text-muted"> © 2020 - GGajdeczka </p>
 
