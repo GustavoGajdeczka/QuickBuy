@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <div class="text-center">
+    <form class="form-signin">
+      <img src="./assets/quick-logo.png" />
+      <h1 class="h4 mb-2 login"> Login do Cliente </h1>
+      <label for="inputEmail" class="sr-only"> Email </label>
+      <input type="email"
+             id="inputEmail"
+             name="email"
+             placeholder="Informe o seu Email"
+             class="form-control mb-2"
+             [ngClass]="{
+             'is-invalid': email.invalid && (email.dirty || email.touched),
+             'is-valid': email.valid && (email.dirty || email.touched)
+             }"
+             [(ngModel)]="user.email"
+             #email="ngModel"
+             email
+             required />
+
+      <label for="inputPassword" class="sr-only"> Senha </label>
+      <input type="password"
+             id="inputPassword"
+             name="password"
+             placeholder="Senha"
+             class="form-control mb-2"
+             [ngClass]="{
+             'is-invalid': password.invalid && (password.dirty || password.touched),
+             'is-valid': password.valid && (password.dirty || password.touched)
+             }"
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             required />
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox"
+                   value="remember-me" /> Relembre-me
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-block"
+                type="submit"
+                (click)="enter()"
+                >
+          Entrar
+        </button>
+
+        <p class="mt-5 mb-3 text-muted"> © 2020 - GGajdeczka </p>
+
+    </form>
+
+  </div>
+</body>
+</html>
