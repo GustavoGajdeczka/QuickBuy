@@ -27,13 +27,13 @@ namespace QuickBuy.Domain.Entity
         public override void Validate() {
             ClearValidationMessage();
             if (!ItemOrders.Any()) {
-                AddMessage("ERRO: Pedido não pode ficar vazio");
+                AddMessage("ERROR: Pedido não pode ficar vazio");
             }
             if (string.IsNullOrEmpty(CEP)) {
-                AddMessage("ERRO: CEP não pode ficar vazio");
+                AddMessage("ERROR: CEP não pode ficar vazio");
             }
             if (PaymentFormId == 0) {
-                AddMessage("ERRO: forma de pagamento não informada");
+                AddMessage("ERROR: forma de pagamento não informada");
             }
         }
 
