@@ -47,12 +47,17 @@
         <button class="btn btn-primary btn-block"
                 type="submit"
                 (click)="enter()"
+                [disabled]="active_spinner"
                 >
+          <span class="spinner-border spinnet-border-sm"
+                role="status"
+                aria-hidden="true"
+                *ngIf="active_spinner"></span>
           Entrar
         </button>
 
-      <div class="alert alert-danger" *ngIf="message">
-        {{ message }}
+      <div class="alert alert-danger mb-3" *ngIf="message">
+        {{ message }} 
       </div>
 
         <p class="mt-5 mb-3 text-muted"> © 2020 - GGajdeczka </p>

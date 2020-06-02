@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
 
   }
 
@@ -22,11 +23,11 @@ export class NavMenuComponent {
   }
 
   public loggedUser(): boolean {
-    return sessionStorage.getItem("auth-user") == "1";
+    return this.userService.auth_user();
   }
 
   leave() {
-    sessionStorage.setItem("auth-user", "");
+    this.userService.clean_session();
     this.router.navigate(['/']);
   }
 }

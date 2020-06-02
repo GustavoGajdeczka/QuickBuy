@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public user;
   public returnUrl: string;
   public message: string;
+  private active_spinner: boolean;
   
 
   constructor(private router: Router, private activatedRouter: ActivatedRoute, private userService: UserService) {
@@ -23,20 +24,22 @@ export class LoginComponent implements OnInit {
     }
 
   enter() {
-
+    this.active_spinner = true;
     this.userService.verifyUser(this.user)
       .subscribe(
-        data => {
-          var userReturn: User;
-          userReturn = data;
-          sessionStorage.setItem("auth-user", "1");
-          sessionStorage.setItem("email-user", userReturn.email);
+        user_json => {
+          this.userService.user = user_json;
 
-          this.router.navigate([this.returnUrl]);
+          if (this.returnUrl == null) {
+            this.router.navigate(['/']);
+          } else {
+            this.router.navigate([this.returnUrl]);
+          }
         },
         err => {
           console.log(err.error);
           this.message = err.error;
+          this.active_spinner = false;
         }
       );
   }
