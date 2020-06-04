@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+  <body>
+    <div class="signup-form">
+      <form class="form-register">
+        <h2> Registro </h2>
+        <p class="hint-text"> Crie sua conta Gratis </p>
+        <div class="signup-image">
+          <figure>
+            <img class="signup-image" src="./assets/register-logo.png" />
+          </figure>
+        </div>
+        <div class="form-group">
+          <div class="row form-group">
+            <div class="col-xs-6 form">
+              <input type="text"
+                     id="inputName"
+                     name="name"
+                     placeholder="Nome"
+                     class="form-control"
+                     [(ngModel)]="user.name"
+                     required
+                     [ngClass]="{
+                       'is-invalid': name.invalid && (name.dirty || name.touched),
+                       'is-valid': name.valid && (name.dirty || name.touched)}"
+                     #name="ngModel"/>
+            </div>
+            <div class="col-xs-6">
+              <input type="text"
+                     id="inputLastName"
+                     name="lastName"
+                     placeholder="Sobrenome"
+                     class="form-control"
+                     [(ngModel)]="user.lastName"
+                     required
+                     [ngClass]="{
+                       'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched),
+                       'is-valid': lastName.valid && (lastName.dirty || lastName.touched)}"
+                     #lastName="ngModel"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email"
+                   id="inputEmail"
+                   name="email"
+                   placeholder="Email"
+                   class="form-control"
+                   [(ngModel)]="user.email"
+                   email
+                   required
+                   [ngClass]="{
+                     'is-invalid': email.invalid && (email.dirty || email.touched),
+                     'is-valid': email.valid && (email.dirty || email.touched)}"
+                   #email="ngModel"/>
+          </div>
+          <div class="form-group">
+            <input type="password"
+                   id="inputPassword"
+                   name="Password"
+                   placeholder="Senha"
+                   class="form-control"
+                   [(ngModel)]="user.password"
+                   required
+                   [ngClass]="{
+                     'is-invalid': password.invalid && (password.dirty || password.touched),
+                     'is-valid': password.valid && (password.dirty || password.touched)}"
+                   #password="ngModel"/>
+          </div>
+          
+          <div class="form-group">
+            <label class="checkbox-inline">
+              <input type="checkbox" required /> Eu aceito os <a class="term-router" [routerLink]='["/term"]'>termos</a> de uso
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="register()"> Registre-se </button>
+          </div>
+          <p class="text-muted mt-5 mb-3"> © 2020 - GGajdeczka </p>
+        </div>
+      </form>
+      
+    </div>
+   
+  </body>

@@ -19,7 +19,7 @@ export class RouterGuard implements CanActivate {
     if (this.userService.auth_user()) {
       return true;
     }
-    this.router.navigate(['/enter'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
     }
     

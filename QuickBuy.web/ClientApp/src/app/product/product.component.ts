@@ -1,17 +1,31 @@
-import { Component } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
+import { Product } from "../model/product"
+import { ProductService } from "../services/product/product.service";
 
 @Component({
-  selector: "app-product",
-  template: "<html><body> {{ getName() }} </body></html>"
+  selector: "product",
+  templateUrl: "./product.component.html",
+  styleUrls: ['./product.component.css']
 })
+export class ProductComponent implements OnInit {
+  public product: Product;
 
+  constructor(private productService: ProductService) {
 
-export class ProductComponent {
-  public name: string;
-  public releasedToSell: boolean;
-
-  public getName(): string {
-    return "Xioami";
   }
 
+  ngOnInit(): void {
+    this.product = new Product();
+  }
+
+  public register() {
+    this.productService.register(this.product)
+      .subscribe(
+        productJson => {
+          console.log(productJson);
+        }, e => {
+          alert(e.error);
+        }
+      );
+  }
 }

@@ -1,0 +1,17 @@
+.card {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background: #f2f3f7;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #c850c0, #4158d0);
+}
+
+.card-text {
+    color: #fff;
+}
+
+.card-title {
+  color: #fff;
+}
