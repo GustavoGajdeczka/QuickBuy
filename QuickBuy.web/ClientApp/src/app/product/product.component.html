@@ -1,10 +1,59 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+<div class="product-form">
+  <form class="form-group">
+  <h2> Cadastro de Produto </h2>
+    <img src="./assets/product-logo.png" />
+    <div>
+      <label for="inputName" class="sr-only"> Name </label>
+      <input type="text"
+             id="inputName"
+             name="productName"
+             placeholder="Nome do Produto"
+             class="form-control mb-3"
+             [ngClass]=""
+             [(ngModel)]="product.name"
+             #name="ngModel"
+             required />
 
-</body>
-</html>
+      <label for="inputName" class="sr-only"> Descrição </label>
+      <input type="text"
+             id="inputDescription"
+             name="productDescription"
+             placeholder="Descricao do Produto"
+             class="form-control mb-3"
+             [ngClass]=""
+             [(ngModel)]="product.description"
+             #description="ngModel"
+             required />
+
+      <label for="inputName" class="sr-only"> Preço </label>
+      <input type="number"
+             id="inputPrice"
+             name="productPrice"
+             placeholder="Preço do Produto"
+             class="form-control mb-3"
+             [ngClass]=""
+             [(ngModel)]="product.price"
+             #price="ngModel"
+             required />
+
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file"
+                 class="custom-file-input mb-3"
+                 id="inputFile"
+                 (change)="inputChange($event.target.files)"
+                 aria-describedby="inputGroupAddon" />
+          <label class="custom-file-label" for="inputGroup"> {{selectedPhotoMessage}} </label>
+        </div>
+      </div>
+      <button class="register-btn btn btn-primary mt-3 mb-3"
+              (click)="register()"
+              [disabled]="active_spinner">
+              <span class="spinner_border spinner-border-sm" *ngIf="active_spinner"></span>
+              Cadastrar </button>
+    </div>
+    <p class="copyright-text mt-5 mb-3"> © 2020 - GGajdeczka </p>
+  </form>
+
+</div>
+

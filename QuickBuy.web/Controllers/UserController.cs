@@ -37,8 +37,13 @@ namespace QuickBuy.web.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Post() {
+        public ActionResult Post([FromBody] User user) {
             try {
+                var registeredUser = _userRepository._Get(user.Email);
+                if (registeredUser != null) {
+                    return BadRequest("Usuario já cadastrado");
+                }
+                _userRepository.Create(user);
                 return Ok();
             }catch(Exception ex) {
                 return BadRequest(ex.ToString());

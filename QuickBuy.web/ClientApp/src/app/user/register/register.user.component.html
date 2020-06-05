@@ -76,9 +76,23 @@
             </label>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="register()"> Registre-se </button>
+            <button type="submit"
+                    class="btn btn-primary btn-lg btn-block"
+                    (click)="register()"
+                    [disabled]="active_spinner">
+              <span class="spinner-border spinnet-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                    *ngIf="active_spinner"></span>Registre-se </button>
           </div>
-          <p class="text-muted mt-5 mb-3"> © 2020 - GGajdeczka </p>
+
+          <div class="alert alert-danger" *ngIf="message">
+            {{ message }}
+          </div>
+          <div class="alert alert-success" *ngIf="registeredUser">
+            Usuario cadastrado com sucesso!! <a class="alert-link" [routerLink]='["/login"]'> Clique Aqui</a> para logar.
+          </div>
+          <p class="copyright-text mt-5 mb-3"> © 2020 - GGajdeczka </p>
         </div>
       </form>
       

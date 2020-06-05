@@ -10,6 +10,7 @@ namespace QuickBuy.Domain.Entity
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public string FileName { get; set; }
 
         public override void Validate() {
             if (Price == 0) {

@@ -8,5 +8,7 @@ namespace QuickBuy.Domain.Contracts
     public interface IUserRepository : IRepositoryBase<User>
     {
         User _Get(string email, string password);
+
+        User _Get(string email);
     }
 }

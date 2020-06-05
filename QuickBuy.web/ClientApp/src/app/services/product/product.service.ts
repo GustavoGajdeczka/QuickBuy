@@ -9,6 +9,7 @@ import { Product } from "../../model/product";
 })
 export class ProductService implements OnInit {
 
+
   private _baseUrl: string;
   public products: Product[];
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -43,4 +44,9 @@ export class ProductService implements OnInit {
     return this.http.get<Product>(this._baseUrl + "api/product");
   }
 
+  public sendFile(selectedFile: File): Observable<string>{
+    const formData: FormData = new FormData();
+    formData.append("sendFile", selectedFile, selectedFile.name);
+    return this.http.post<string>(this._baseUrl + "api/product/sendFile", formData);
+  }
 }

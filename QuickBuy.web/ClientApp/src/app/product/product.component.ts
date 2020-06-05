@@ -9,6 +9,9 @@ import { ProductService } from "../services/product/product.service";
 })
 export class ProductComponent implements OnInit {
   public product: Product;
+  public selectedFile: File;
+  public selectedPhotoMessage: string = "Escolha uma foto";
+  public active_spinnner: boolean;
 
   constructor(private productService: ProductService) {
 
@@ -18,14 +21,28 @@ export class ProductComponent implements OnInit {
     this.product = new Product();
   }
 
+  public inputChange(files: FileList) {
+    this.selectedFile = files.item(0);
+    this.active_spinnner = true;
+    this.productService.sendFile(this.selectedFile)
+      .subscribe(fileName => {
+        this.product.fileName = fileName;
+        this.active_spinnner = false;
+      }, e => {
+          //alert(e.error);
+          this.active_spinnner = false;
+      });
+    this.selectedPhotoMessage = this.selectedFile.name;
+  }
+
   public register() {
-    this.productService.register(this.product)
+    /*this.productService.register(this.product)
       .subscribe(
         productJson => {
-          console.log(productJson);
+          
         }, e => {
           alert(e.error);
         }
-      );
+      );*/
   }
 }
